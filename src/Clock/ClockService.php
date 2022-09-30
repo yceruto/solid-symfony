@@ -16,10 +16,10 @@ class ClockService
     ) {
     }
 
-    public function time(): ?DateTimeImmutable
+    public function time(): DateTimeImmutable
     {
         if ('prod' === $this->env) {
-            return null;
+            return new DateTimeImmutable();
         }
 
         return $this->cache->get('clock', static fn () => new DateTimeImmutable());
