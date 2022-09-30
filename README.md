@@ -1,2 +1,1 @@
-# solid-symfony
-SOLID principles on Symfony apps
+# SOLID Principles on Symfony applications
