@@ -1,11 +1,11 @@
-parameters:
-
 services:
     _defaults:
         autowire: true
         autoconfigure: true
         bind:
             string $env: '%kernel.environment%'
+            array $toggles:
+                invert_time_machine: false
 
     App\:
         resource: '../src/'
