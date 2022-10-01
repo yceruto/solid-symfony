@@ -1,17 +1,27 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.2.0/snap.svg-min.js'></script>
+{% endblock %}
+
 {% block content_title %}Refactoring Workshop > Clock{% endblock %}
 
 {% block content %}
-    <div>
-        Time: {{ time|date }}
+    <div class="mb-4">
+        {{ include('clock/clock.svg') }}
+        <script src="/js/clock.js?v=1"></script>
+        <script>update('{{ time|date('Y-m-d H:i', timezone='Europe/Paris') }}')</script>
     </div>
-    <br>
-    <div>
-        <a href="{{ path('app_advance_clock') }}" class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+    <div class="mb-4">
+        Time: {{ time|date(timezone='Europe/Paris') }}
+    </div>
+    <div class="mb-4">
+        <a href="{{ path('app_advance_clock') }}"
+           class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
             Advance 1 min
         </a>
-        <a href="{{ path('app_reset_clock') }}" class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+        <a href="{{ path('app_reset_clock') }}"
+           class="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
             Reset
         </a>
     </div>
