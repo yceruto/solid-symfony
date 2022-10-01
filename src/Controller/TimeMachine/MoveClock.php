@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Clock;
+namespace App\Controller\TimeMachine;
 
 use App\Clock\TimeMachine;
-use App\FeatureFlag\ToggleDecider;
+use App\Toggle\ToggleDecider;
 use DateInterval;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/refactoring/clock/move', name: 'app_move_clock')]
-class AdvanceClock extends AbstractController
+class MoveClock extends AbstractController
 {
     public function __construct(
         private readonly TimeMachine $timeMachine,
@@ -25,10 +25,10 @@ class AdvanceClock extends AbstractController
         $interval = new DateInterval('PT1M');
 
         if ($this->toggleDecider->decider('invert_time_machine')) {
-            $interval->invert = 1;
+            $this->timeMachine->back($interval);
+        } else {
+            $this->timeMachine->advance($interval);
         }
-
-        $this->timeMachine->advance($interval);
 
         return $this->redirectToRoute('app_show_clock');
     }

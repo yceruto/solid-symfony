@@ -4,16 +4,16 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.2.0/snap.svg-min.js'></script>
 {% endblock %}
 
-{% block content_title %}Refactoring Workshop > Clock{% endblock %}
+{% block content_title %}Refactoring Workshop > Time Machine{% endblock %}
 
 {% block content %}
     <div class="mb-4">
-        {{ include('clock/clock.svg') }}
+        {{ include('time_machine/clock.svg') }}
         <script src="/js/clock.js?v=1"></script>
         <script>update('{{ time|date('Y-m-d H:i', timezone='Europe/Paris') }}')</script>
     </div>
     <div class="mb-4">
-        Time: {{ time|date(timezone='Europe/Paris') }}
+        Time: {{ time|date(timezone='Europe/Paris') }} (Paris)
     </div>
     <div class="mb-4">
         <a href="{{ path('app_move_clock') }}"

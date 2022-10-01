@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\FeatureFlag;
+namespace App\Toggle;
 
 use InvalidArgumentException;
 

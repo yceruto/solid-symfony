@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Clock;
+namespace App\Controller\TimeMachine;
 
 use App\Clock\TimeMachine;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

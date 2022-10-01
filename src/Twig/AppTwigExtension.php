@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Twig;
 
-use App\FeatureFlag\ToggleDecider;
+use App\Toggle\ToggleDecider;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-class ToggleDeciderTwigExtension extends AbstractExtension
+class AppTwigExtension extends AbstractExtension
 {
     public function __construct(
         private readonly ToggleDecider $toggleDecider

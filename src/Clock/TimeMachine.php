@@ -38,6 +38,19 @@ class TimeMachine
         $this->cache->save($cacheItem);
     }
 
+    public function back(DateInterval $interval): void
+    {
+        if ('prod' === $this->env) {
+            return;
+        }
+
+        $cacheItem = $this->cache->getItem('clock');
+        $clock = $cacheItem->get() ?? new DateTimeImmutable();
+        $cacheItem->set($clock->sub($interval));
+
+        $this->cache->save($cacheItem);
+    }
+
     public function reset(): void
     {
         if ('prod' === $this->env) {
