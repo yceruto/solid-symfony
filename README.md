@@ -16,4 +16,4 @@ Tasks:
  - Add possibility to switch to another type of persistence (without touching the code, only config)
    * Add an in-memory persistence implementation
    * Add unit tests (use the previous in-memory adapter)
-   * Add functional tests (use the previous in-memory adapter)
+   * Add functional tests (configure the previous in-memory adapter)

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Clock;
 
-use App\Clock\ClockService;
+use App\Clock\TimeMachine;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,13 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class ShowClock extends AbstractController
 {
     public function __construct(
-        private readonly ClockService $clockService,
+        private readonly TimeMachine $timeMachine,
     ) {
     }
 
     public function __invoke(): Response
     {
-        $time = $this->clockService->time();
+        $time = $this->timeMachine->time();
 
         return $this->render('clock/show.html.twig', [
             'time' => $time,

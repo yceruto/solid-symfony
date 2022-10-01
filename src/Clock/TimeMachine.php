@@ -8,7 +8,7 @@ use DateInterval;
 use DateTimeImmutable;
 use Psr\Cache\CacheItemPoolInterface;
 
-class ClockService
+class TimeMachine
 {
     public function __construct(
         private readonly CacheItemPoolInterface $cache,
