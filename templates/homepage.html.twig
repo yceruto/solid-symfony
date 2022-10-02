@@ -1,11 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block content_title %}Refactoring Workshops{% endblock %}
+{% block content_title %}Refactoring Legacy{% endblock %}
 
 {% block content %}
     <ul>
         <li>
-            <a href="{{ path('app_show_clock') }}" class="font-medium text-indigo-600 hover:text-indigo-500">Time Machine</a>
+            <a href="{{ path('app_show_clock') }}" class="font-medium text-indigo-600 hover:text-indigo-500 absolute">
+                <div class="mb-1" style="width: 103px">
+                    <img src="/image/time-machine.png" alt="time-machine" class="saturate-0 h-full w-full object-cover object-center lg:h-full lg:w-full">
+                </div>
+                <div>
+                    Time Machine
+                </div>
+            </a>
         </li>
     </ul>
 {% endblock %}

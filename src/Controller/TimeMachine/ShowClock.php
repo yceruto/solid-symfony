@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/refactoring/clock', name: 'app_show_clock')]
+#[Route('/refactoring-legacy/time-machine', name: 'app_show_clock')]
 class ShowClock extends AbstractController
 {
     public function __construct(
