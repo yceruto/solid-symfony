@@ -6,12 +6,12 @@ namespace App\Clock;
 
 use DateInterval;
 use DateTimeImmutable;
-use Psr\Cache\CacheItemPoolInterface;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 class TimeMachine
 {
     public function __construct(
-        private readonly CacheItemPoolInterface $cache,
+        private readonly FilesystemAdapter $cache,
         private readonly string $env,
     ) {
     }
