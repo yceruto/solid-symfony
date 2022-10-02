@@ -38,7 +38,7 @@ class TimeMachine
         $this->cache->save($cacheItem);
     }
 
-    public function back(DateInterval $interval): void
+    public function goBack(DateInterval $interval): void
     {
         if ('prod' === $this->env) {
             return;

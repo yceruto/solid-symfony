@@ -25,7 +25,7 @@ class MoveClock extends AbstractController
         $interval = new DateInterval('PT1M');
 
         if ($this->toggleDecider->decider('invert_time_machine')) {
-            $this->timeMachine->back($interval);
+            $this->timeMachine->goBack($interval);
         } else {
             $this->timeMachine->advance($interval);
         }
