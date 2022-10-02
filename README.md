@@ -1,19 +1,19 @@
-# Refactoring Workshop
+# Refactoring Workshops
 
-* SOLID Principles on Symfony applications
+* Refactoring Legacy Applications
 
-## Clock
+## Time Machine Service
 
 Specifications:
- - If it doesn't exist, the default time is the current system time
- - It can advance to a future date/time
- - It can reset to the current time
- - It cannot be modified on "prod" environment and always returns the current time
- - It is persisted on cache system (by default)
+ - Get current time (from local system by default)
+ - Advance in time
+ - Go back in time
+ - Environment-dependent (the time cannot be modified on "prod" environment)
+ - Memory (in cache by default)
 
 Tasks:
  - Identify SOLID violations and refactor accordingly
  - Add possibility to switch to another type of persistence (without touching the code, only config)
    * Add an in-memory persistence implementation
-   * Add unit tests (use the previous in-memory adapter)
-   * Add functional tests (configure the previous in-memory adapter)
+   * Add unit tests
+   * Add functional tests
