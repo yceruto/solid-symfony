@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\TimeMachine;
 
-use App\Clock\TimeMachine;
+use App\Clock\TimeResetterInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ResetClock extends AbstractController
 {
     public function __construct(
-        private readonly TimeMachine $timeMachine,
+        private readonly TimeResetterInterface $timeMachine,
     ) {
     }
 

@@ -4,59 +4,56 @@ declare(strict_types=1);
 
 namespace App\Clock;
 
+use App\Clock\Storage\ClockStorageInterface;
 use DateInterval;
 use DateTimeImmutable;
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
-class TimeMachine
+/**
+ * SRP:
+ *  - TimeMachine (Service)
+ *  - Model (Clock)
+ *  - Storage (Cache)
+ * OPS:
+ *  - Environment -> Storage Adapters (Cache, Null)
+ * LSP:
+ *  - ~
+ * DIP:
+ *  - TimeMachineInterface
+ *  - ClockStorageInterface
+ *  - CacheItemPoolInterface
+ * ISP:
+ *  - TimeAwareInterface
+ *  - TimeHandlerInterface
+ *  - TimeResetterInterface
+ */
+class TimeMachine implements TimeMachineInterface
 {
     public function __construct(
-        private readonly FilesystemAdapter $cache,
-        private readonly string $env,
+        private readonly ClockStorageInterface $storage,
     ) {
     }
 
     public function time(): DateTimeImmutable
     {
-        if ('prod' === $this->env) {
-            return new DateTimeImmutable();
-        }
-
-        return $this->cache->get('clock', static fn () => new DateTimeImmutable());
+        return $this->storage->load()->time();
     }
 
     public function advance(DateInterval $interval): void
     {
-        if ('prod' === $this->env) {
-            return;
-        }
-
-        $cacheItem = $this->cache->getItem('clock');
-        $clock = $cacheItem->get() ?? new DateTimeImmutable();
-        $cacheItem->set($clock->add($interval));
-
-        $this->cache->save($cacheItem);
+        $clock = $this->storage->load();
+        $clock->advance($interval);
+        $this->storage->save($clock);
     }
 
     public function goBack(DateInterval $interval): void
     {
-        if ('prod' === $this->env) {
-            return;
-        }
-
-        $cacheItem = $this->cache->getItem('clock');
-        $clock = $cacheItem->get() ?? new DateTimeImmutable();
-        $cacheItem->set($clock->sub($interval));
-
-        $this->cache->save($cacheItem);
+        $clock = $this->storage->load();
+        $clock->goBack($interval);
+        $this->storage->save($clock);
     }
 
     public function reset(): void
     {
-        if ('prod' === $this->env) {
-            return;
-        }
-
-        $this->cache->deleteItem('clock');
+        $this->storage->clear();
     }
 }

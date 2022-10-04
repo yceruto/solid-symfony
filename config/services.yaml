@@ -7,7 +7,6 @@ services:
         autowire: true
         autoconfigure: true
         bind:
-            string $env: '%kernel.environment%'
             array $toggles: '%toggles%'
 
     App\:
@@ -15,4 +14,8 @@ services:
         exclude:
             - '../src/Kernel.php'
 
-    Symfony\Component\Cache\Adapter\FilesystemAdapter: '@cache.app'
+    App\Clock\Storage\ClockStorageInterface: '@App\Clock\Storage\CacheClockStorage'
+
+when@prod:
+    services:
+        App\Clock\Storage\ClockStorageInterface: '@App\Clock\Storage\NullClockStorage'

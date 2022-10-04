@@ -1,0 +1,2 @@
+services:
+    #App\Clock\TimeAwareInterface: '@App\Integrator\Clock\CustomTimeMachine'

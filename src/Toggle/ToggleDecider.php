@@ -6,7 +6,7 @@ namespace App\Toggle;
 
 use InvalidArgumentException;
 
-class ToggleDecider
+class ToggleDecider implements ToggleDeciderInterface
 {
     public function __construct(
         private readonly array $toggles,
