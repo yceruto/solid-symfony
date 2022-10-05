@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Clock\Storage;
 
+use App\Clock\Factory\ClockFactoryInterface;
 use App\Clock\Model\Clock;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -13,12 +14,13 @@ class CacheClockStorage implements ClockStorageInterface
 
     public function __construct(
         private readonly CacheItemPoolInterface $cache,
+        private readonly ClockFactoryInterface $factory,
     ) {
     }
 
     public function load(): Clock
     {
-        return $this->cache->get(self::KEY, static fn () => new Clock());
+        return $this->cache->get(self::KEY, fn () => $this->factory->create());
     }
 
     public function save(Clock $clock): void
