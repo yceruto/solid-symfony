@@ -33,6 +33,15 @@ services:
         arguments:
             - '%time.now%'
 
+    # Strategies
+
+    App\Clock\Strategy\MoveTimeHandlerInterface:
+        factory: '@App\Clock\Strategy\MoveTimeHandlerFactory'
+
+    App\Clock\Strategy\MoveTimeHandlerInterface $advanceTimeHandler: '@App\Clock\Strategy\AdvanceTimeHandler'
+    App\Clock\Strategy\MoveTimeHandlerInterface $goBackTimeHandler: '@App\Clock\Strategy\GoBackTimeHandler'
+    App\Clock\Strategy\MoveTimeHandlerInterface $nullTimeHandler: '@App\Clock\Strategy\NullTimeHandler'
+
 when@prod:
     parameters:
         time.now: 'world'

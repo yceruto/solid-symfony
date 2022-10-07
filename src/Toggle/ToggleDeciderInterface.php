@@ -6,5 +6,5 @@ namespace App\Toggle;
 
 interface ToggleDeciderInterface
 {
-    public function decider(string $flag): bool;
+    public function decide(string $flag): ?bool;
 }

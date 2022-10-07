@@ -18,7 +18,7 @@ class AppTwigExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('toggle_decider', [$this->toggleDecider, 'decider']),
+            new TwigFunction('toggle_decider', [$this->toggleDecider, 'decide']),
         ];
     }
 }

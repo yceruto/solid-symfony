@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Toggle;
 
-use InvalidArgumentException;
-
 class ToggleDecider implements ToggleDeciderInterface
 {
     public function __construct(
@@ -13,8 +11,8 @@ class ToggleDecider implements ToggleDeciderInterface
     ) {
     }
 
-    public function decider(string $flag): bool
+    public function decide(string $flag): ?bool
     {
-        return $this->toggles[$flag] ?? throw new InvalidArgumentException(sprintf('Flag "%s" not found.', $flag));
+        return $this->toggles[$flag] ?? null;
     }
 }

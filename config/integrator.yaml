@@ -1,2 +1,9 @@
 services:
-    #App\Clock\TimeAwareInterface: '@App\Integrator\Clock\CustomTimeMachine'
+#    App\Clock\Strategy\MoveTimeHandlerInterface $advanceTimeHandler: '@App\Clock\Strategy\GoBackTimeHandler'
+#    App\Clock\Strategy\MoveTimeHandlerInterface $goBackTimeHandler: '@App\Clock\Strategy\AdvanceTimeHandler'
+
+    App\Integrator\Clock\LoggerAdvanceTimeHandler:
+        decorates: 'App\Clock\Strategy\AdvanceTimeHandler'
+        arguments:
+            - '@App\Integrator\Clock\LoggerAdvanceTimeHandler.inner'
+            - '@logger'
